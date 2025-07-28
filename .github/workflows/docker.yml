@@ -13,6 +13,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  MAXMINDDB_USER_ID: ${{ secrets.MAXMINDDB_USER_ID }}
+  MAXMINDDB_LICENSE_KEY: ${{ secrets.MAXMINDDB_LICENSE_KEY }}
+
 jobs:
   prepare:
     runs-on: ubuntu-latest
