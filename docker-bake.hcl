@@ -5,6 +5,7 @@ variable "GITHUB_REPOSITORY_OWNER" {
 group "default" {
   targets = [
     "db-ip",
+    "github-cli",
     "go-discover-dockerswarm",
     "maxminddb",
   ]
@@ -38,6 +39,14 @@ target "db-ip" {
   target = db
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/db-ip:${db}"
+  ]
+}
+
+target "github-cli" {
+  inherits = [ "dockerfiles" ]
+  context = "github-cli"
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/github-cli:latest"
   ]
 }
 
