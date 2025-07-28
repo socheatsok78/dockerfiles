@@ -27,3 +27,8 @@ COPY --from=libmaxminddb-geolite2-city /var/lib/libmaxminddb/GeoLite2-City.mmdb 
 
 FROM --platform=$BUILDPLATFORM scratch AS geolite2-country
 COPY --from=libmaxminddb-geolite2-country /var/lib/libmaxminddb/GeoLite2-Country.mmdb /
+
+FROM --platform=$BUILDPLATFORM scratch AS latest
+COPY --from=libmaxminddb-geolite2-asn /var/lib/libmaxminddb/GeoLite2-ASN.mmdb /
+COPY --from=libmaxminddb-geolite2-city /var/lib/libmaxminddb/GeoLite2-City.mmdb /
+COPY --from=libmaxminddb-geolite2-country /var/lib/libmaxminddb/GeoLite2-Country.mmdb /

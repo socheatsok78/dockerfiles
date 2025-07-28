@@ -9,11 +9,16 @@ RUN gunzip /dbip-city-lite.mmdb.gz
 ADD https://download.db-ip.com/free/dbip-country-lite-${DATE}.mmdb.gz /dbip-country-lite.mmdb.gz
 RUN gunzip /dbip-country-lite.mmdb.gz
 
-FROM scratch AS asn-lite
+FROM --platform=$BUILDPLATFORM scratch AS asn-lite
 COPY --from=download --link /dbip-asn-lite.mmdb /
 
-FROM scratch AS city-lite
+FROM --platform=$BUILDPLATFORM scratch AS city-lite
 COPY --from=download --link /dbip-city-lite.mmdb /
 
-FROM scratch AS country-lite
+FROM --platform=$BUILDPLATFORM scratch AS country-lite
+COPY --from=download --link /dbip-country-lite.mmdb /
+
+FROM --platform=$BUILDPLATFORM scratch AS latest
+COPY --from=download --link /dbip-asn-lite.mmdb /
+COPY --from=download --link /dbip-city-lite.mmdb /
 COPY --from=download --link /dbip-country-lite.mmdb /
