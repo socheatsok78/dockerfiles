@@ -2,7 +2,7 @@
 
 This is a collection of both miscellaneous development experiments and images I rely on for various things.
 
-> [!NOTE]
+> [!IMPORTANT]
 > Please note that some of these images are for private use only and will not be published to the public. If you are interested in any of these images, please fork the repository and build them yourself.
 
 ## Usage
