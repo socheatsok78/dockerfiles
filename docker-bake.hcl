@@ -6,6 +6,7 @@ group "default" {
   targets = [
     "db-ip",
     "go-discover-dockerswarm",
+    "maxminddb",
   ]
 }
 
@@ -45,5 +46,22 @@ target "go-discover-dockerswarm" {
   context = "go-discover-dockerswarm"
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover-dockerswarm:latest"
+  ]
+}
+
+target "maxminddb" {
+  inherits = [ "dockerfiles" ]
+  matrix = {
+    db = [
+      "geolite2-asn",
+      "geolite2-city",
+      "geolite2-country",
+    ]
+  }
+  name = "maxminddb-${db}"
+  context = "maxminddb"
+  target = db
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/maxminddb:${db}"
   ]
 }
