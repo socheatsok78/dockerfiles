@@ -64,4 +64,8 @@ target "maxminddb" {
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/maxminddb:${db}"
   ]
+  secret = [
+    "id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID",
+    "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
+  ]
 }
