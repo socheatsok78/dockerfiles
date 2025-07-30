@@ -8,6 +8,7 @@ group "default" {
     "github-cli",
     "go-discover",
     "go-discover-dockerswarm",
+    "go-netaddrs",
     "maxminddb",
   ]
 }
@@ -64,6 +65,14 @@ target "go-discover-dockerswarm" {
   context = "go-discover-dockerswarm"
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover-dockerswarm:latest"
+  ]
+}
+
+target "go-netaddrs" {
+  inherits = [ "dockerfiles" ]
+  context = "go-netaddrs"
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-netaddrs:latest"
   ]
 }
 
