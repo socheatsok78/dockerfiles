@@ -17,8 +17,3 @@ COPY --from=download --link /dbip-city-lite.mmdb /
 
 FROM --platform=$BUILDPLATFORM scratch AS country-lite
 COPY --from=download --link /dbip-country-lite.mmdb /
-
-FROM --platform=$BUILDPLATFORM scratch AS latest
-COPY --from=asn-lite --link /dbip-asn-lite.mmdb /
-COPY --from=city-lite --link /dbip-city-lite.mmdb /
-COPY --from=country-lite --link /dbip-country-lite.mmdb /

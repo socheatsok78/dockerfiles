@@ -18,8 +18,3 @@ ENV MAXMINDDB_FILES="GeoLite2-Country.mmdb"
 RUN --mount=type=secret,id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID \
     --mount=type=secret,id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY \
     echo "" > /etc/libmaxminddb.cron.conf && /etc/periodic/weekly/libmaxminddb
-
-FROM --platform=$BUILDPLATFORM scratch AS latest
-COPY --from=geolite2-asn --link /var/lib/libmaxminddb/GeoLite2-ASN.mmdb /
-COPY --from=geolite2-city --link /var/lib/libmaxminddb/GeoLite2-City.mmdb /
-COPY --from=geolite2-country --link /var/lib/libmaxminddb/GeoLite2-Country.mmdb /

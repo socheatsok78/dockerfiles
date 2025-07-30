@@ -29,7 +29,6 @@ target "db-ip" {
   inherits = [ "dockerfiles" ]
   matrix = {
     db = [
-      "latest",
       "asn-lite",
       "city-lite",
       "country-lite",
@@ -63,7 +62,6 @@ target "maxminddb" {
   inherits = [ "dockerfiles" ]
   matrix = {
     db = [
-      "latest",
       "geolite2-asn",
       "geolite2-city",
       "geolite2-country",
