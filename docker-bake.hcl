@@ -6,6 +6,7 @@ group "default" {
   targets = [
     "db-ip",
     "github-cli",
+    "go-discover",
     "go-discover-dockerswarm",
     "maxminddb",
   ]
@@ -47,6 +48,14 @@ target "github-cli" {
   context = "github-cli"
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/github-cli:latest"
+  ]
+}
+
+target "go-discover" {
+  inherits = [ "dockerfiles" ]
+  context = "go-discover"
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover:latest"
   ]
 }
 
