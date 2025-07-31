@@ -37,7 +37,6 @@ target "caddy" {
   inherits = [ "dockerfiles" ]
   matrix = {
     version = [
-      "2.9",
       "2.10",
     ]
   }
