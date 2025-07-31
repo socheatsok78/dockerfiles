@@ -4,6 +4,7 @@ variable "GITHUB_REPOSITORY_OWNER" {
 
 group "default" {
   targets = [
+    "caddy",
     "db-ip",
     "github-cli",
     "go-discover",
