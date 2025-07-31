@@ -1,0 +1,2 @@
+github.com/caddy-dns/acmeproxy@v1.1.1
+github.com/caddy-dns/cloudflare@master

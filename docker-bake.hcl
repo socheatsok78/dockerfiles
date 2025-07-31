@@ -27,6 +27,24 @@ target "dockerfiles" {
   ]
 }
 
+target "caddy" {
+  inherits = [ "dockerfiles" ]
+  matrix = {
+    version = [
+      "2.9",
+      "2.10",
+    ]
+  }
+  name = "caddy-${replace(version, ".", "-")}"
+  context = "caddy"
+  args = {
+    CADDY_VERSION = version
+  }
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${version}"
+  ]
+}
+
 target "db-ip" {
   inherits = [ "dockerfiles" ]
   matrix = {
