@@ -5,11 +5,16 @@ variable "GITHUB_REPOSITORY_OWNER" {
 group "default" {
   targets = [
     "caddy",
-    "db-ip",
     "github-cli",
     "go-discover",
     "go-discover-dockerswarm",
     "go-netaddrs",
+  ]
+}
+
+group "schedule" {
+  targets = [
+    "db-ip",
     "maxminddb",
   ]
 }
