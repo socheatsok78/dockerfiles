@@ -9,10 +9,11 @@ group "default" {
     "go-discover",
     "go-discover-dockerswarm",
     "go-netaddrs",
+    "manual",
   ]
 }
 
-group "schedule" {
+group "manual" {
   targets = [
     "db-ip",
     "maxminddb",
