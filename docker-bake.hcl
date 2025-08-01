@@ -9,12 +9,6 @@ group "default" {
     "go-discover",
     "go-discover-dockerswarm",
     "go-netaddrs",
-    "manual",
-  ]
-}
-
-group "manual" {
-  targets = [
     "db-ip",
     "maxminddb",
   ]
