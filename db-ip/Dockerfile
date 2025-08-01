@@ -1,4 +1,4 @@
-ARG DATE=2025-07
+ARG DATE=2025-08
 
 FROM --platform=$BUILDPLATFORM busybox AS download
 ARG DATE
