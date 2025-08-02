@@ -15,6 +15,14 @@ group "default" {
   ]
 }
 
+group "schedule" {
+  targets = [
+    "db-ip",
+    "maxminddb",
+    "openssl-dhparam",
+  ]
+}
+
 target "docker-metadata-action" {}
 target "github-metadata-action" {}
 
