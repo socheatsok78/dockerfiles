@@ -9,8 +9,6 @@ group "default" {
     "go-discover",
     "go-discover-dockerswarm",
     "go-netaddrs",
-    "db-ip",
-    "maxminddb",
     "openssl-dhparam",
   ]
 }
