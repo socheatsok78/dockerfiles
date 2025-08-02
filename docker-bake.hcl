@@ -11,6 +11,7 @@ group "default" {
     "go-netaddrs",
     "db-ip",
     "maxminddb",
+    "openssl-dhparam",
   ]
 }
 
@@ -112,5 +113,13 @@ target "maxminddb" {
   secret = [
     "id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID",
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
+  ]
+}
+
+target "openssl-dhparam" {
+  inherits = [ "dockerfiles" ]
+  context = "openssl-dhparam"
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/openssl-dhparam:latest"
   ]
 }
