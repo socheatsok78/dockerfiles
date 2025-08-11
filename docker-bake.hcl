@@ -64,6 +64,9 @@ target "db-ip" {
   name = "db-ip-${db}"
   context = "db-ip"
   target = db
+  args = {
+    DATE = formatdate("YYYY-MM", timestamp())
+  }
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/db-ip:${db}"
   ]
