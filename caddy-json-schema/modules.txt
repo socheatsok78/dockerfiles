@@ -1,0 +1,4 @@
+github.com/abiosoft/caddy-json-schema
+github.com/mholt/caddy-l4@7a3b3c5e46d7a3856f140ee39bcbd648b6814128
+github.com/caddy-dns/acmeproxy@v1.1.1
+github.com/caddy-dns/cloudflare@master

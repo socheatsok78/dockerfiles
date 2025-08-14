@@ -12,6 +12,7 @@ variable "GITHUB_REPOSITORY_OWNER" {
 group "default" {
   targets = [
     "caddy",
+    "caddy-json-schema",
     "caddy-l4",
     "github-cli",
     "go-discover",
@@ -43,12 +44,19 @@ target "dockerfiles" {
   ]
 }
 
+// Caddy
+
+variable "CADDY_VERSION" {
+  type = list(string)
+  default = [
+    "2.10",
+  ]
+}
+
 target "caddy" {
   inherits = [ "dockerfiles" ]
   matrix = {
-    version = [
-      "2.10",
-    ]
+    version = CADDY_VERSION
   }
   name = "caddy-${replace(version, ".", "-")}"
   context = "caddy"
@@ -61,12 +69,26 @@ target "caddy" {
   ]
 }
 
+target "caddy-json-schema" {
+  inherits = [ "dockerfiles" ]
+  matrix = {
+    version = CADDY_VERSION
+  }
+  name = "caddy-json-schema-${replace(version, ".", "-")}"
+  context = "caddy-json-schema"
+  args = {
+    CADDY_VERSION = version
+  }
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${version}",
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${RELEASE_BY_DATE_TAG}",
+  ]
+}
+
 target "caddy-l4" {
   inherits = [ "dockerfiles" ]
   matrix = {
-    version = [
-      "2.10",
-    ]
+    version = CADDY_VERSION
   }
   name = "caddy-l4-${replace(version, ".", "-")}"
   description = "Caddy with TCP/UDP support"
@@ -79,6 +101,8 @@ target "caddy-l4" {
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${RELEASE_BY_DATE_TAG}",
   ]
 }
+
+// DB-IP
 
 target "db-ip" {
   inherits = [ "dockerfiles" ]
@@ -101,6 +125,8 @@ target "db-ip" {
   ]
 }
 
+// GitHub CLI
+
 target "github-cli" {
   inherits = [ "dockerfiles" ]
   context = "github-cli"
@@ -109,6 +135,8 @@ target "github-cli" {
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/github-cli:${RELEASE_BY_DATE_TAG}",
   ]
 }
+
+// Go modules
 
 target "go-discover" {
   inherits = [ "dockerfiles" ]
@@ -137,6 +165,8 @@ target "go-netaddrs" {
   ]
 }
 
+// MaxMindDB
+
 target "maxminddb" {
   inherits = [ "dockerfiles" ]
   matrix = {
@@ -158,6 +188,8 @@ target "maxminddb" {
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
   ]
 }
+
+// OpenSSL DHParam
 
 target "openssl-dhparam" {
   inherits = [ "dockerfiles" ]
