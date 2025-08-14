@@ -1,11 +1,13 @@
 ARG CADDY_VERSION=2
+ARG CADDY_TARGET=caddy
 
 FROM caddy:${CADDY_VERSION}-builder-alpine AS build
 WORKDIR /tmp/source
+ARG CADDY_TARGET
 RUN --mount=type=bind,target=/tmp/source <<EOT
   set -xeou pipefail
-  test -f modules.txt || exit 1
-  xcaddy build --output /usr/bin/caddy $(xargs -a modules.txt -I {} echo --with {})
+  test -f "${CADDY_TARGET}/modules.txt" || exit 1
+  xcaddy build --output /usr/bin/caddy $(xargs -a "${CADDY_TARGET}/modules.txt" -I {} echo --with {})
   /usr/bin/caddy list-modules
 EOT
 

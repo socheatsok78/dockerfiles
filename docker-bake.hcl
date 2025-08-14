@@ -62,6 +62,7 @@ target "caddy" {
   context = "caddy"
   args = {
     CADDY_VERSION = version
+    CADDY_TARGET = "caddy"
   }
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${version}",
@@ -75,9 +76,10 @@ target "caddy-json-schema" {
     version = CADDY_VERSION
   }
   name = "caddy-json-schema-${replace(version, ".", "-")}"
-  context = "caddy-json-schema"
+  context = "caddy"
   args = {
     CADDY_VERSION = version
+    CADDY_TARGET = "caddy-json-schema"
   }
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${version}",
@@ -92,9 +94,10 @@ target "caddy-l4" {
   }
   name = "caddy-l4-${replace(version, ".", "-")}"
   description = "Caddy with TCP/UDP support"
-  context = "caddy-l4"
+  context = "caddy"
   args = {
     CADDY_VERSION = version
+    CADDY_TARGET = "layer4"
   }
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${version}",
