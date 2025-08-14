@@ -12,6 +12,7 @@ variable "GITHUB_REPOSITORY_OWNER" {
 group "default" {
   targets = [
     "caddy",
+    "caddy-l4",
     "github-cli",
     "go-discover",
     "go-discover-dockerswarm",
@@ -57,6 +58,25 @@ target "caddy" {
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${version}",
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${RELEASE_BY_DATE_TAG}",
+  ]
+}
+
+target "caddy-l4" {
+  inherits = [ "dockerfiles" ]
+  matrix = {
+    version = [
+      "2.10",
+    ]
+  }
+  name = "caddy-l4-${replace(version, ".", "-")}"
+  description = "Caddy with TCP/UDP support"
+  context = "caddy-l4"
+  args = {
+    CADDY_VERSION = version
+  }
+  tags = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${version}",
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${RELEASE_BY_DATE_TAG}",
   ]
 }
 
