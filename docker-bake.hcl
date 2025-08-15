@@ -79,7 +79,7 @@ target "caddy-json-schema" {
   context = "caddy"
   args = {
     CADDY_VERSION = version
-    CADDY_TARGET = "caddy-json-schema"
+    CADDY_TARGET = "json-schema"
   }
   tags = [
     "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${version}",
