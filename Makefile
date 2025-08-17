@@ -1,5 +1,5 @@
 target ?= default
 it:
-	docker buildx bake ${target} --set="*.platform=" --print
+	docker buildx bake ${target} --set="*.platform=" --no-cache --print
 build:
-	docker buildx bake ${target} --set="*.platform=" --load
+	docker buildx bake ${target} --set="*.platform=" --no-cache --load
