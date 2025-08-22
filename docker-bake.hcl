@@ -9,6 +9,21 @@ variable "GITHUB_REPOSITORY_OWNER" {
   default = "socheatsok78-lab"
 }
 
+function "tag" {
+  params = [name, version]
+  result = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}",
+  ]
+}
+
+function "tags" {
+  params = [name, version]
+  result = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}",
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}",
+  ]
+}
+
 group "default" {
   targets = [
     "caddy",
@@ -64,10 +79,7 @@ target "caddy" {
     CADDY_VERSION = version
     CADDY_TARGET = "caddy"
   }
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${version}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("caddy", version)
 }
 
 target "caddy-json-schema" {
@@ -81,10 +93,7 @@ target "caddy-json-schema" {
     CADDY_VERSION = version
     CADDY_TARGET = "json-schema"
   }
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${version}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-json-schema:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("caddy-json-schema", version)
 }
 
 target "caddy-l4" {
@@ -99,10 +108,7 @@ target "caddy-l4" {
     CADDY_VERSION = version
     CADDY_TARGET = "layer4"
   }
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${version}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/caddy-l4:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("caddy-l4", version)
 }
 
 // DB-IP
@@ -122,10 +128,7 @@ target "db-ip" {
   args = {
     DATE = formatdate("YYYY-MM", timestamp())
   }
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/db-ip:${db}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/db-ip:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("db-ip", db)
 }
 
 // GitHub CLI
@@ -133,10 +136,7 @@ target "db-ip" {
 target "github-cli" {
   inherits = [ "dockerfiles" ]
   context = "github-cli"
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/github-cli:latest",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/github-cli:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("github-cli", "latest")
 }
 
 // Go modules
@@ -144,28 +144,19 @@ target "github-cli" {
 target "go-discover" {
   inherits = [ "dockerfiles" ]
   context = "go-discover"
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover:latest",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("go-discover", "latest")
 }
 
 target "go-discover-dockerswarm" {
   inherits = [ "dockerfiles" ]
   context = "go-discover-dockerswarm"
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover-dockerswarm:latest",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-discover-dockerswarm:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("go-discover-dockerswarm", "latest")
 }
 
 target "go-netaddrs" {
   inherits = [ "dockerfiles" ]
   context = "go-netaddrs"
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-netaddrs:latest",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/go-netaddrs:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("go-netaddrs", "latest")
 }
 
 // MaxMindDB
@@ -182,14 +173,11 @@ target "maxminddb" {
   name = "maxminddb-${db}"
   context = "maxminddb"
   target = db
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/maxminddb:${db}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/maxminddb:${RELEASE_BY_DATE_TAG}",
-  ]
   secret = [
     "id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID",
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
   ]
+  tags = tags("maxminddb", db)
 }
 
 // OpenSSL DHParam
@@ -197,8 +185,5 @@ target "maxminddb" {
 target "openssl-dhparam" {
   inherits = [ "dockerfiles" ]
   context = "openssl-dhparam"
-  tags = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/openssl-dhparam:latest",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/openssl-dhparam:${RELEASE_BY_DATE_TAG}",
-  ]
+  tags = tags("openssl-dhparam", "latest")
 }
