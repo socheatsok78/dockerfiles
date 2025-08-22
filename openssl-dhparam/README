@@ -1,0 +1,25 @@
+## Diffie-Hellman (DH) parameters
+Diffie–Hellman (DH) key exchange[nb 1] is a mathematical method of securely generating a symmetric cryptographic key over a public channel and was one of the first protocols as conceived by Ralph Merkle and named after Whitfield Diffie and Martin Hellman.
+
+https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
+
+## Usage
+
+How to use the generated Diffie-Hellman parameters in your Nginx configuration, following the example below:
+
+```Dockerfile
+# Dockerfile
+FROM ghcr.io/socheatsok78/openssl-dhparam:latest AS dhparam
+FROM nginx:stable
+COPY --from=dhparam --link /dhparam.pem /etc/nginx/dhparam.pem
+```
+
+```nginx
+# nginx.conf
+http {
+    # ...
+    # Diffie-Hellman parameter for DHE ciphersuites
+    ssl_dhparam            /etc/nginx/dhparam.pem;
+    # ...
+}
+```
