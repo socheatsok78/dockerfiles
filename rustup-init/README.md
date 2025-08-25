@@ -35,6 +35,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 
 RUN --mount=type=bind,from=rustup-init,source=/rustup-init,target=/usr/local/bin/rustup-init \
     set -ex; \
+    apk add --no-cache gcc; \
     /usr/local/bin/rustup-init -y --no-modify-path --profile minimal --default-toolchain stable; \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
     rustup --version; \
