@@ -1,1 +1,1 @@
-github.com/abiosoft/caddy-json-schema
+github.com/abiosoft/caddy-json-schema@c4d6e132f3af8d5746ea07e4a3f8238727a76b60
