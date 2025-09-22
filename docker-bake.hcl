@@ -35,6 +35,7 @@ group "default" {
     "go-netaddrs",
     "openssl-dhparam",
     "rustup-init",
+    "xiaomi-cloud-token-extractor",
   ]
 }
 
@@ -227,4 +228,14 @@ target "rustup-init" {
   dockerfile = "${VARIANT.name}.Dockerfile"
   platforms = VARIANT.platforms
   tags = tag("rustup-init", "${VERSION}${VARIANT.suffix}")
+}
+
+// Maiscellaneous
+
+target "xiaomi-cloud-token-extractor" {
+  context = "https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor.git#master"
+  matrix = {
+    "VERSION" = [ "latest" ]
+  }
+  tags = tags("xiaomi-cloud-token-extractor", VERSION)
 }
