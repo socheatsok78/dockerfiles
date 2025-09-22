@@ -1,4 +1,4 @@
-ARG GH_VERSION=2.76.1
+ARG GH_VERSION=2.79.0
 
 # https://github.com/cli/cli
 FROM alpine:latest AS gh
