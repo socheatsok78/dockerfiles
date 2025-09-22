@@ -67,6 +67,8 @@ variable "CADDY_VERSION" {
   type = list(string)
   default = [
     "2.10",
+    "2.10.1",
+    "2.10.2",
   ]
 }
 
