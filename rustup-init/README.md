@@ -2,6 +2,8 @@
 
 The Rust toolchain installer
 
+https://github.com/rust-lang/rustup
+
 ## Usage
 
 Install Rust toolchain with `debian` image as base:
