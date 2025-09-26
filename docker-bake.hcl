@@ -233,6 +233,7 @@ target "rustup-init" {
 // Maiscellaneous
 
 target "xiaomi-cloud-token-extractor" {
+  inherits = [ "dockerfiles" ]
   context = "https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor.git#master"
   matrix = {
     "VERSION" = [ "latest" ]
