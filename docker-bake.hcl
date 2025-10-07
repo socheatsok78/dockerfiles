@@ -22,7 +22,7 @@ function "tag_by_date" {
 group "default" {
   targets = [
     "caddy",
-    "caddy-json-schema",
+    // "caddy-json-schema",
     "caddy-l4",
     "github-cli",
     "go-discover",
