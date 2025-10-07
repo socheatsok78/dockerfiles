@@ -14,4 +14,3 @@ EOT
 
 FROM scratch
 COPY --from=build --link /usr/local/bin/discover-dockerswarm /usr/local/bin/discover-dockerswarm
-ADD rootfs /
