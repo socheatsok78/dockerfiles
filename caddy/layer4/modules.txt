@@ -1,3 +1,4 @@
 github.com/caddy-dns/acmeproxy@v1.1.1
 github.com/caddy-dns/cloudflare@f589a18c0f5d2ce871cc907c0567b2f8ef20c4c0
 github.com/mholt/caddy-l4@4a517a98d7fa82d0e18ec3a852722fd406a3a0ae
+github.com/rjevski/caddy-cloudflare-origin-ca@master
