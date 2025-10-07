@@ -61,7 +61,7 @@ target "dockerfiles" {
 variable "CADDY_VERSION" {
   type = list(string)
   default = [
-    "2.10",
+    "2.10.2",
   ]
 }
 
@@ -73,6 +73,7 @@ target "caddy" {
   name = "caddy-${replace(version, ".", "-")}"
   context = "caddy"
   args = {
+    CADDY_BUILDER_VERSION = regex("^(\\d+\\.\\d+)", version)[0]
     CADDY_VERSION = version
     CADDY_TARGET = "caddy"
   }
