@@ -8,7 +8,7 @@ ARG CADDY_VERSION
 ARG CADDY_TARGET
 RUN --mount=type=bind,target=/tmp/source \
     --mount=type=cache,sharing=locked,id=${CADDY_TARGET}/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
-    --mount=type=cache,sharing=locked,id=${CADDY_TARGET}/root/.cache/go-build,target=/root/.cache/go-build \
+    --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail
   test -f "${CADDY_TARGET}/modules.txt" || exit 1
