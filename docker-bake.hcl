@@ -15,7 +15,7 @@ function "tag" {
 }
 
 function "tag_by_date" {
-  params = [name, version]
+  params = [name]
   result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}"
 }
 
@@ -78,7 +78,8 @@ target "caddy" {
     CADDY_TARGET = "caddy"
   }
   tags = [
-    tag_by_date("caddy", version)
+    tag("caddy", version),
+    tag_by_date("caddy")
   ]
 }
 
@@ -94,7 +95,8 @@ target "caddy-json-schema" {
     CADDY_TARGET = "json-schema"
   }
   tags = [
-    tag_by_date("caddy-json-schema", version)
+    tag("caddy-json-schema", version),
+    tag_by_date("caddy-json-schema")
   ]
 }
 
@@ -111,7 +113,8 @@ target "caddy-l4" {
     CADDY_TARGET = "layer4"
   }
   tags = [
-    tag_by_date("caddy-l4", version)
+    tag("caddy-l4", version),
+    tag_by_date("caddy-l4")
   ]
 }
 
@@ -133,7 +136,7 @@ target "db-ip" {
     DATE = formatdate("YYYY-MM", timestamp())
   }
   tags = [
-    tag_by_date("db-ip", db)
+    tag("db-ip", db),
   ]
 }
 
@@ -143,7 +146,8 @@ target "github-cli" {
   inherits = [ "dockerfiles" ]
   context = "github-cli"
   tags = [
-    tag_by_date("github-cli", "latest")
+    tag("github-cli", "latest"),
+    tag_by_date("github-cli")
   ]
 }
 
@@ -153,7 +157,8 @@ target "go-discover" {
   inherits = [ "dockerfiles" ]
   context = "go-discover"
   tags = [
-    tag_by_date("go-discover", "latest")
+    tag("go-discover", "latest"),
+    tag_by_date("go-discover")
   ]
 }
 
@@ -161,7 +166,8 @@ target "go-discover-dockerswarm" {
   inherits = [ "dockerfiles" ]
   context = "go-discover-dockerswarm"
   tags = [
-    tag_by_date("go-discover-dockerswarm", "latest")
+    tag("go-discover-dockerswarm", "latest"),
+    tag_by_date("go-discover-dockerswarm")
   ]
 }
 
@@ -169,7 +175,8 @@ target "go-netaddrs" {
   inherits = [ "dockerfiles" ]
   context = "go-netaddrs"
   tags = [
-    tag_by_date("go-netaddrs", "latest")
+    tag("go-netaddrs", "latest"),
+    tag_by_date("go-netaddrs")
   ]
 }
 
@@ -192,7 +199,7 @@ target "maxminddb" {
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
   ]
   tags = [
-    tag_by_date("maxminddb", db)
+    tag("maxminddb", db),
   ]
 }
 
@@ -202,7 +209,8 @@ target "openssl-dhparam" {
   inherits = [ "dockerfiles" ]
   context = "openssl-dhparam"
   tags = [
-    tag_by_date("openssl-dhparam", "latest")
+    tag("openssl-dhparam", "latest"),
+    tag_by_date("openssl-dhparam")
   ]
 }
 
@@ -257,6 +265,7 @@ target "xiaomi-cloud-token-extractor" {
     "VERSION" = [ "latest" ]
   }
   tags = [
-    tag_by_date("xiaomi-cloud-token-extractor", VERSION)
+    tag("xiaomi-cloud-token-extractor", VERSION),
+    tag_by_date("xiaomi-cloud-token-extractor")
   ]
 }
