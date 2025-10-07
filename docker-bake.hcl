@@ -11,17 +11,12 @@ variable "GITHUB_REPOSITORY_OWNER" {
 
 function "tag" {
   params = [name, version]
-  result = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}",
-  ]
+  result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}"
 }
 
-function "tags" {
+function "tag_by_date" {
   params = [name, version]
-  result = [
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}",
-    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}",
-  ]
+  result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}"
 }
 
 group "default" {
@@ -81,7 +76,9 @@ target "caddy" {
     CADDY_VERSION = version
     CADDY_TARGET = "caddy"
   }
-  tags = tags("caddy", version)
+  tags = [
+    tag_by_date("caddy", version)
+  ]
 }
 
 target "caddy-json-schema" {
@@ -95,7 +92,9 @@ target "caddy-json-schema" {
     CADDY_VERSION = version
     CADDY_TARGET = "json-schema"
   }
-  tags = tags("caddy-json-schema", version)
+  tags = [
+    tag_by_date("caddy-json-schema", version)
+  ]
 }
 
 target "caddy-l4" {
@@ -110,7 +109,9 @@ target "caddy-l4" {
     CADDY_VERSION = version
     CADDY_TARGET = "layer4"
   }
-  tags = tags("caddy-l4", version)
+  tags = [
+    tag_by_date("caddy-l4", version)
+  ]
 }
 
 // DB-IP
@@ -130,7 +131,9 @@ target "db-ip" {
   args = {
     DATE = formatdate("YYYY-MM", timestamp())
   }
-  tags = tags("db-ip", db)
+  tags = [
+    tag_by_date("db-ip", db)
+  ]
 }
 
 // GitHub CLI
@@ -138,7 +141,9 @@ target "db-ip" {
 target "github-cli" {
   inherits = [ "dockerfiles" ]
   context = "github-cli"
-  tags = tags("github-cli", "latest")
+  tags = [
+    tag_by_date("github-cli", "latest")
+  ]
 }
 
 // Go modules
@@ -146,19 +151,25 @@ target "github-cli" {
 target "go-discover" {
   inherits = [ "dockerfiles" ]
   context = "go-discover"
-  tags = tags("go-discover", "latest")
+  tags = [
+    tag_by_date("go-discover", "latest")
+  ]
 }
 
 target "go-discover-dockerswarm" {
   inherits = [ "dockerfiles" ]
   context = "go-discover-dockerswarm"
-  tags = tags("go-discover-dockerswarm", "latest")
+  tags = [
+    tag_by_date("go-discover-dockerswarm", "latest")
+  ]
 }
 
 target "go-netaddrs" {
   inherits = [ "dockerfiles" ]
   context = "go-netaddrs"
-  tags = tags("go-netaddrs", "latest")
+  tags = [
+    tag_by_date("go-netaddrs", "latest")
+  ]
 }
 
 // MaxMindDB
@@ -179,7 +190,9 @@ target "maxminddb" {
     "id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID",
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
   ]
-  tags = tags("maxminddb", db)
+  tags = [
+    tag_by_date("maxminddb", db)
+  ]
 }
 
 // OpenSSL DHParam
@@ -187,7 +200,9 @@ target "maxminddb" {
 target "openssl-dhparam" {
   inherits = [ "dockerfiles" ]
   context = "openssl-dhparam"
-  tags = tags("openssl-dhparam", "latest")
+  tags = [
+    tag_by_date("openssl-dhparam", "latest")
+  ]
 }
 
 // Rustup
@@ -227,7 +242,9 @@ target "rustup-init" {
   }
   dockerfile = "${VARIANT.name}.Dockerfile"
   platforms = VARIANT.platforms
-  tags = tag("rustup-init", "${VERSION}${VARIANT.suffix}")
+  tags = [
+    tag("rustup-init", "${VERSION}${VARIANT.suffix}")
+  ]
 }
 
 // Maiscellaneous
@@ -238,5 +255,7 @@ target "xiaomi-cloud-token-extractor" {
   matrix = {
     "VERSION" = [ "latest" ]
   }
-  tags = tags("xiaomi-cloud-token-extractor", VERSION)
+  tags = [
+    tag_by_date("xiaomi-cloud-token-extractor", VERSION)
+  ]
 }
