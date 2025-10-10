@@ -8,9 +8,17 @@ RUN --mount=type=bind,target=/tmp/source \
     --mount=type=cache,sharing=locked,id=go-netaddrs/root/.cache/go-build,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail
-  go build -ldflags "-w -s" -o /usr/local/bin/netaddrs .
-  chmod u+s /usr/local/bin/netaddrs
+  for GOOS in linux; do
+    for GOARCH in amd64 arm64; do
+      export GOOS GOARCH
+      go build -ldflags "-w -s" -o /usr/local/bin/netaddrs-${GOOS}-${GOARCH} .
+    done
+  done
 EOT
 
+FROM --platform=$BUILDPLATFORM scratch AS bin
+ARG TARGETARCH
+COPY --link --from=build /usr/local/bin/netaddrs-linux-${TARGETARCH} /usr/local/bin/netaddrs
+
 FROM scratch
-COPY --from=build --link /usr/local/bin/netaddrs /usr/local/bin/netaddrs
+COPY --from=bin --link /usr/local/bin/netaddrs /usr/local/bin/netaddrs
