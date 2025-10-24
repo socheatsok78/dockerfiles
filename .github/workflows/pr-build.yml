@@ -2,7 +2,7 @@ name: PR Build
 
 on:
   pull_request:
-    types: [ opened, labeled, ready_for_review, synchronize ]
+    types: [opened, reopened, synchronize, ready_for_review, labeled]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

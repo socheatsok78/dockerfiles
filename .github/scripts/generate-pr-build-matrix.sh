@@ -9,10 +9,10 @@ set -euo pipefail
 
 GITHUB_BASE_REF=${GITHUB_BASE_REF:-main}
 GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-}
-GITHUB_OUTPUT=${GITHUB_OUTPUT:-/dev/stdout}
+GITHUB_OUTPUT=${GITHUB_OUTPUT:-/dev/null}
 
 RUNNER_TEMP=${RUNNER_TEMP:-$(pwd)}
-BUILD_MATRIX_MANIFEST=${RUNNER_TEMP}/build_matrix.txt
+BUILD_MATRIX_MANIFEST=$(mktemp -p "${RUNNER_TEMP}")
 
 if [ -z "$GITHUB_HEAD_REF" ]; then
   echo "This script should be run in the context of a pull request."
