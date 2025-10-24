@@ -72,6 +72,7 @@ jobs:
             cwd://${{ steps.github-meta.outputs.bake-file }}
           set: |
             *.cache-from=type=gha
+            ${{ contains(github.event.pull_request.labels.*.name, 'pr-pull') && '*.cache-to=type=gha,mode=max' || ''}}
 
   pr-merge:
     if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
