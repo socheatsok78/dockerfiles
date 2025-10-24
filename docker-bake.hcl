@@ -23,7 +23,7 @@ group "default" {
   targets = [
     "caddy",
     // "caddy-json-schema",
-    "caddy-l4",
+    "caddy-layer4",
     "github-cli",
     "go-discover",
     "go-discover-dockerswarm",
@@ -65,21 +65,21 @@ variable "CADDY_VERSION" {
   ]
 }
 
-group "caddy" {
+group "caddies" {
   targets = [
-    "caddy-custom",
+    "caddy",
     "caddy-json-schema",
     "caddy-layer4",
   ]
 }
 
-target "caddy-custom" {
+target "caddy" {
   inherits = [ "dockerfiles" ]
   matrix = {
     version = CADDY_VERSION
   }
   name = "caddy-${replace(version, ".", "-")}"
-  context = "caddy-custom"
+  context = "caddy"
   args = {
     CADDY_BUILDER_VERSION = regex("^(\\d+\\.\\d+)", version)[0]
     CADDY_VERSION = version
