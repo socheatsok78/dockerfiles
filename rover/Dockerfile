@@ -46,8 +46,6 @@ RUN --mount=type=cache,sharing=locked,target=/go/pkg/mod \
 EOT
 
 FROM alpine:${ALPINE_VERSION}
-
-# Install chromium and tini
 RUN apk add chromium tini
 
 # Copy rover and terraform binaries
