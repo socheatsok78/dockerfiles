@@ -55,7 +55,7 @@ jobs:
         uses: docker/bake-action@v6
         with:
           targets: ${{ matrix.target }}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: false
           files: |
             ./docker-bake.hcl
             cwd://${{ steps.docker-meta.outputs.bake-file-labels }}
