@@ -21,9 +21,10 @@ for file in $(git diff "origin/${GITHUB_BASE_REF}" "HEAD" --name-only); do
 	if [[ "${file}" == *"Dockerfile" ]]; then
 		# Extract target and version from the file path
 		target=$(echo "${file}" | cut -d'/' -f1)
-		version=$(echo "${file}" | cut -d'/' -f2)
-		build_matrix+=("{\"target\":\"${target}\",\"version\":\"${version}\"}")
-		echo "Added to build matrix: target=${target}, version=${version}"
+		# version=$(echo "${file}" | cut -d'/' -f2)
+		build_matrix+=("{\"target\":\"${target}\"}")
+		# build_matrix+=("{\"target\":\"${target}\",\"version\":\"${version}\"}")
+		echo "Added to build matrix: target=${target}"
 	fi
 done
 
