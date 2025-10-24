@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
       - name: Generate matrix
         id: generate
-        run: ./scripts/generate-pr-build-matrix.sh
+        run: ./.github/scripts/generate-pr-build-matrix.sh
 
   build:
     runs-on: ubuntu-latest
