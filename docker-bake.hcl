@@ -69,7 +69,7 @@ group "caddy" {
   targets = [
     "caddy-custom",
     "caddy-json-schema",
-    "caddy-l4",
+    "caddy-layer4",
   ]
 }
 
@@ -97,7 +97,7 @@ target "caddy-json-schema" {
     version = CADDY_VERSION
   }
   name = "caddy-json-schema-${replace(version, ".", "-")}"
-  context = "caddy"
+  context = "caddy-json-schema"
   args = {
     CADDY_VERSION = version
     CADDY_TARGET = "json-schema"
@@ -108,14 +108,14 @@ target "caddy-json-schema" {
   ]
 }
 
-target "caddy-l4" {
+target "caddy-layer4" {
   inherits = [ "dockerfiles" ]
   matrix = {
     version = CADDY_VERSION
   }
   name = "caddy-l4-${replace(version, ".", "-")}"
   description = "Caddy with TCP/UDP support"
-  context = "caddy"
+  context = "caddy-layer4"
   args = {
     CADDY_VERSION = version
     CADDY_TARGET = "layer4"
