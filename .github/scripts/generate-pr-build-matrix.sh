@@ -21,10 +21,15 @@ for file in $(git diff "origin/${GITHUB_BASE_REF}" "HEAD" --name-only); do
 	if [[ "${file}" == *"/.empty" ]] || [[ "${file}" == *"/Dockerfile" ]] || [[ "${file}" == *"/docker-bake.hcl" ]]; then
 		# Extract target and version from the file path
 		target=$(echo "${file}" | cut -d'/' -f1)
-		# version=$(echo "${file}" | cut -d'/' -f2)
+		# check if this target is already in the build matrix
+		matrix="{\"target\":\"${target}\"}"
+		if [[ " ${build_matrix[*]} " == *" ${matrix} "* ]]; then
+			echo "- target already in build matrix: target=${target}"
+			continue
+		fi
+		# Add to build matrix
 		build_matrix+=("{\"target\":\"${target}\"}")
-		# build_matrix+=("{\"target\":\"${target}\",\"version\":\"${version}\"}")
-		echo "Added to build matrix: target=${target}"
+		echo "+ added to build matrix: target=${target}"
 	fi
 done
 
