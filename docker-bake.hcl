@@ -65,13 +65,21 @@ variable "CADDY_VERSION" {
   ]
 }
 
-target "caddy" {
+group "caddy" {
+  targets = [
+    "caddy-custom",
+    "caddy-json-schema",
+    "caddy-l4",
+  ]
+}
+
+target "caddy-custom" {
   inherits = [ "dockerfiles" ]
   matrix = {
     version = CADDY_VERSION
   }
   name = "caddy-${replace(version, ".", "-")}"
-  context = "caddy"
+  context = "caddy-custom"
   args = {
     CADDY_BUILDER_VERSION = regex("^(\\d+\\.\\d+)", version)[0]
     CADDY_VERSION = version
