@@ -1,9 +1,7 @@
-name: Build (Scheduled)
+name: Build
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * 0' # Every Sunday at midnight
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,8 +22,6 @@ jobs:
       - name: List targets
         id: generate
         uses: docker/bake-action/subaction/matrix@v6
-        with:
-          target: 'schedule'
 
   build:
     runs-on: ubuntu-latest

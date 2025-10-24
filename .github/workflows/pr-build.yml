@@ -1,16 +1,8 @@
-name: Build
+name: PR Build
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-      - develop
-    paths:
-      - 'docker-bake.hcl'
-      - '**/Dockerfile'
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -26,11 +18,12 @@ jobs:
     outputs:
       matrix: ${{ steps.generate.outputs.matrix }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: List targets
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate matrix
         id: generate
-        uses: docker/bake-action/subaction/matrix@v6
+        run: ./scripts/generate-pr-build-matrix.sh
 
   build:
     runs-on: ubuntu-latest
@@ -58,13 +51,6 @@ jobs:
         id: github-meta
         uses: dockerbakery/github-metadata-action@v3
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build and push
         uses: docker/bake-action@v6
         with:
@@ -77,4 +63,3 @@ jobs:
             cwd://${{ steps.github-meta.outputs.bake-file }}
           set: |
             *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
