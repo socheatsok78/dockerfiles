@@ -269,3 +269,12 @@ target "xiaomi-cloud-token-extractor" {
     tag_by_date("xiaomi-cloud-token-extractor")
   ]
 }
+
+target "rover" {
+  inherits = [ "dockerfiles" ]
+  context = "rover"
+  tags = [
+    tag("rover", "latest"),
+    tag_by_date("rover")
+  ]
+}
