@@ -13,6 +13,17 @@ env:
   MAXMINDDB_LICENSE_KEY: ${{ secrets.MAXMINDDB_LICENSE_KEY }}
 
 jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+        name: Evaluate the PR for merging
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          gh pr merge --repo ${{ github.repository }} --merge ${{ github.event.pull_request.number }}
+
   prepare:
     runs-on: ubuntu-latest
     outputs:
@@ -71,8 +82,3 @@ jobs:
             cwd://${{ steps.github-meta.outputs.bake-file }}
           set: |
             *.cache-from=type=gha
-
-      - if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
-        name: Accept and merge the PR
-        run:
-          gh pr merge --repo ${{ github.repository }} --merge ${{ github.event.pull_request.number }}
