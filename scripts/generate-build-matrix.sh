@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+GITHUB_OUTPUT=${GITHUB_OUTPUT:-/dev/stdout}
+
 # This script detects files changed in a pull request compared to the main branch.
 # It looks for Dockerfiles among the changed files and generates a build matrix accordingly.
 # Example:
