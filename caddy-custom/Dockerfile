@@ -9,7 +9,7 @@ RUN --mount=type=bind,target=/tmp/source \
     --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail
-  test -f ".//modules.txt" || exit 1
+  test -f "./modules.txt" || exit 1
   for GOOS in linux; do
     for GOARCH in amd64 arm64; do
       export GOOS GOARCH
