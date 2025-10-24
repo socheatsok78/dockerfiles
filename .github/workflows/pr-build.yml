@@ -2,10 +2,7 @@ name: PR Build
 
 on:
   pull_request:
-    types: [ ready_for_review ]
-  pull_request_target:
-    types:
-      - labeled
+    types: [ labeled, ready_for_review, synchronize ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,8 +13,24 @@ env:
   MAXMINDDB_LICENSE_KEY: ${{ secrets.MAXMINDDB_LICENSE_KEY }}
 
 jobs:
+  triage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+        name: Evaluate the PR for merging
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          gh pr merge --repo ${{ github.repository }} --merge ${{ github.event.pull_request.number }}
+
   prepare:
     runs-on: ubuntu-latest
+    needs:
+      - triage
     outputs:
       matrix: ${{ steps.generate.outputs.matrix }}
     steps:
@@ -74,8 +87,3 @@ jobs:
             cwd://${{ steps.github-meta.outputs.bake-file }}
           set: |
             *.cache-from=type=gha
-
-      - if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
-        name: Accept and merge the PR
-        run:
-          gh pr merge --repo ${{ github.repository }} --merge ${{ github.event.pull_request.number }}
