@@ -15,6 +15,9 @@ env:
 jobs:
   triage:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
@@ -26,6 +29,8 @@ jobs:
 
   prepare:
     runs-on: ubuntu-latest
+    needs:
+      - triage
     outputs:
       matrix: ${{ steps.generate.outputs.matrix }}
     steps:
