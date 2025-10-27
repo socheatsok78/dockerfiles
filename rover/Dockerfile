@@ -28,7 +28,7 @@ RUN --mount=type=cache,sharing=locked,target=/root/.npm \
 EOT
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS stage2
-# Copy the Vault source code from the previous stage
+
 COPY --link --from=stage0 /rover /rover
 COPY --link --from=stage1 /rover/ui/dist/ /rover/ui/dist/
 WORKDIR /rover
