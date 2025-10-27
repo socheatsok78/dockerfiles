@@ -1,3 +1,4 @@
 ARG BUILDKIT_VERSION
 FROM moby/buildkit:${BUILDKIT_VERSION}
-RUN apk add github-cli
+COPY --chmod=0755 run.sh /run.sh
+ENTRYPOINT [ "/run.sh", "buildkitd" ]
