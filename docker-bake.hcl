@@ -56,6 +56,30 @@ target "dockerfiles" {
   ]
 }
 
+// Buildkit
+
+variable "BUILDKIT_VERSION" {
+  type = list(string)
+  default = [
+    "buildx-stable-1",
+  ]
+}
+
+target "buildkit" {
+  inherits = [ "dockerfiles" ]
+  matrix = {
+    version = BUILDKIT_VERSION
+  }
+  name = "buildkit-${replace(version, ".", "-")}"
+  context = "buildkit"
+  args = {
+    BUILDKIT_VERSION = version
+  }
+  tags = [
+    tag("buildkit", version),
+  ]
+}
+
 // Caddy
 
 variable "CADDY_VERSION" {
