@@ -8,6 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   MAXMINDDB_USER_ID: ${{ secrets.MAXMINDDB_USER_ID }}
   MAXMINDDB_LICENSE_KEY: ${{ secrets.MAXMINDDB_LICENSE_KEY }}
 
