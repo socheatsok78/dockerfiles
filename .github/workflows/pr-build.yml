@@ -11,6 +11,8 @@ concurrency:
 env:
   MAXMINDDB_USER_ID: ${{ secrets.MAXMINDDB_USER_ID }}
   MAXMINDDB_LICENSE_KEY: ${{ secrets.MAXMINDDB_LICENSE_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_AUTH_HEADER: bearer
 
 jobs:
 
