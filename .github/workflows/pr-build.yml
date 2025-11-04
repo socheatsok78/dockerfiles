@@ -38,10 +38,6 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -67,7 +63,6 @@ jobs:
       - name: Build and push
         uses: docker/bake-action@v6
         with:
-          source: .
           targets: ${{ matrix.target }}
           push: ${{ contains(github.event.pull_request.labels.*.name, 'pr-pull') }}
           files: |
