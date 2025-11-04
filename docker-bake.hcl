@@ -54,6 +54,9 @@ target "dockerfiles" {
     "linux/amd64",
     "linux/arm64",
   ]
+  secret = [
+    "id=GIT_AUTH_TOKEN.github.com,env=GITHUB_TOKEN",
+  ]
 }
 
 // Buildkit

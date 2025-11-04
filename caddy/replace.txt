@@ -1,1 +1,2 @@
 github.com/rjevski/caddy-cloudflare-origin-ca@master=github.com/socheatsok78/caddy-cloudflare-origin-ca@master
+github.com/socheatsok78/caddy-storage-rqlite=/tmp/source/modules/caddy-storage-rqlite
