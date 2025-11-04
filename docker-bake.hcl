@@ -55,7 +55,7 @@ target "dockerfiles" {
     "linux/arm64",
   ]
   secret = [
-    "id=GIT_AUTH_TOKEN.github.com,env=GITHUB_TOKEN",
+    "id=GIT_AUTH_TOKEN.github.com,env=GH_TOKEN",
   ]
 }
 
