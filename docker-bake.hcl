@@ -29,6 +29,7 @@ group "default" {
     "go-discover-dockerswarm",
     "go-netaddrs",
     "openssl-dhparam",
+    "pishrink",
     "rustup-init",
     "xiaomi-cloud-token-extractor",
   ]
@@ -212,6 +213,17 @@ target "go-netaddrs" {
   ]
 }
 
+// 
+
+target "haproxy" {
+  inherits = [ "dockerfiles" ]
+  context = "haproxy"
+  tags = [
+    tag("haproxy", "latest"),
+    tag_by_date("haproxy")
+  ]
+}
+
 // MaxMindDB
 
 target "maxminddb" {
@@ -243,6 +255,16 @@ target "openssl-dhparam" {
   tags = [
     tag("openssl-dhparam", "latest"),
     tag_by_date("openssl-dhparam")
+  ]
+}
+
+// pishrink
+target "pishrink" {
+  inherits = [ "dockerfiles" ]
+  context = "https://github.com/Drewsif/PiShrink.git"
+  tags = [
+    tag("pishrink", "latest"),
+    tag_by_date("pishrink")
   ]
 }
 
