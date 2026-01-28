@@ -1,2 +1,2 @@
 FROM idank-explainshell
-ADD http://manpages.ubuntu.com/dman /usr/local/bin/dman
+ADD --chmod=755 http://manpages.ubuntu.com/dman /usr/local/bin/dman
