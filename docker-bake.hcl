@@ -36,12 +36,13 @@ target "dockerfiles" {
 
 group "default" {
   targets = [
-    "caddy",
     // "caddy-json-schema",
     "caddy-layer4",
+    "caddy",
+    "explainshell",
     "github-cli",
-    "go-discover",
     "go-discover-dockerswarm",
+    "go-discover",
     "go-netaddrs",
     "openssl-dhparam",
     "pishrink",
@@ -61,11 +62,12 @@ group "schedule" {
 target "targets" {
   matrix = {
     targets = [
-      // "caddy-json-schema",
+      "caddy-json-schema",
       "caddy-layer4",
       "caddy",
       "db-ip",
       "github-cli",
+      "explainshell",
       "go-discover-dockerswarm",
       "go-discover",
       "go-netaddrs",
