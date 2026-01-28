@@ -2,6 +2,10 @@ name: Build
 
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        default: default
+        description: 'docker buildx bake [TARGET...]'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,6 +26,8 @@ jobs:
       - name: List targets
         id: generate
         uses: docker/bake-action/subaction/matrix@v6
+        with:
+          target: ${{ inputs.target }}
 
   build:
     runs-on: ubuntu-latest
