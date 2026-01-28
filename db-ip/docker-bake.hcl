@@ -15,5 +15,6 @@ target "db-ip" {
   }
   tags = [
     tag("db-ip", db),
+    tag_by_date_with_prefix("db-ip", db),
   ]
 }
