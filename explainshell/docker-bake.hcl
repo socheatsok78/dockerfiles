@@ -3,7 +3,7 @@ target "idank-explainshell" {
 }
 target "explainshell" {
   inherits = [ "dockerfiles" ]
-  context = "https://github.com/idank/explainshell.git#cfa685e7ada2731bc188efeaa24a271845a15bb0"
+  context = "explainshell"
   matrix = {
     "VERSION" = [ "latest" ]
   }
