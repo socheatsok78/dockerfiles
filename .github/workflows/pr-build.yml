@@ -67,6 +67,7 @@ jobs:
           push: ${{ contains(github.event.pull_request.labels.*.name, 'pr-pull') }}
           files: |
             ./docker-bake.hcl
+            ./${{ matrix.target }}/docker-bake.hcl
             cwd://${{ steps.docker-meta.outputs.bake-file-labels }}
             cwd://${{ steps.docker-meta.outputs.bake-file-annotations }}
             cwd://${{ steps.github-meta.outputs.bake-file }}
