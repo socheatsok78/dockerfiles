@@ -16,5 +16,6 @@ target "maxminddb" {
   ]
   tags = [
     tag("maxminddb", db),
+    tag_by_date_with_prefix("maxminddb", db),
   ]
 }
