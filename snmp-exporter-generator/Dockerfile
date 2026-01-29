@@ -12,7 +12,7 @@ COPY --from=builder /src/generator/mibs ${MIBDIRS}
 RUN apt-get update \
   && apt-get install -y --no-install-recommends libsnmp40 \
   && rm -rf /var/lib/apt/lists/*
-WORKDIR "/opt/generator"
+WORKDIR "/tmp"
 COPY --from=builder /src/generator/generator /bin/generator
 ENTRYPOINT ["/bin/generator"]
 CMD ["generate"]
