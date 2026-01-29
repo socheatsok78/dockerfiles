@@ -53,6 +53,7 @@ group "default" {
     "openssl-dhparam",
     "pishrink",
     "rustup-init",
+    "snmp-exporter-generator",
     "xiaomi-cloud-token-extractor",
   ]
 }
@@ -82,6 +83,7 @@ target "targets" {
       "openssl-dhparam",
       "pishrink",
       "rustup-init",
+      "snmp-exporter-generator",
       "xiaomi-cloud-token-extractor",
     ]
   }
