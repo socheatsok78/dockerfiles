@@ -66,6 +66,8 @@ group "schedule" {
   ]
 }
 
+// Define individual targets, this will be merged with
+// the `${targets}/docker-bake.hcl` files during bake execution.
 target "targets" {
   matrix = {
     targets = [
