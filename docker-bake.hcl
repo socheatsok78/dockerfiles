@@ -54,7 +54,6 @@ target "dockerfiles" {
 
 group "default" {
   targets = [
-    // "caddy-json-schema",
     "caddy-layer4",
     "caddy",
     "certigo",
@@ -77,9 +76,27 @@ group "default" {
 
 group "schedule" {
   targets = [
+    "schedule-monthly",
+    "schedule-yearly",
+  ]
+}
+
+group "schedule-monthly" {
+  targets = [
     "db-ip",
     "maxminddb",
+  ]
+}
+
+group "schedule-yearly" {
+  targets = [
     "openssl-dhparam",
+  ]
+}
+
+group "archived" {
+  targets = [
+    "caddy-json-schema",
   ]
 }
 
