@@ -56,6 +56,7 @@ group "default" {
     "pishrink",
     "rustup-init",
     "snmp-exporter-generator",
+    "socat",
     "xiaomi-cloud-token-extractor",
   ]
 }
@@ -90,6 +91,7 @@ target "targets" {
       "pishrink",
       "rustup-init",
       "snmp-exporter-generator",
+      "socat",
       "xiaomi-cloud-token-extractor",
     ]
   }
