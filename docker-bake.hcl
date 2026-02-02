@@ -58,6 +58,7 @@ group "default" {
     "snmp-exporter-generator",
     "socat",
     "xiaomi-cloud-token-extractor",
+    "yt-dlp",
   ]
 }
 
@@ -93,6 +94,7 @@ target "targets" {
       "snmp-exporter-generator",
       "socat",
       "xiaomi-cloud-token-extractor",
+      "yt-dlp",
     ]
   }
   name = targets
