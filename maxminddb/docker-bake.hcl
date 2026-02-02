@@ -14,8 +14,8 @@ target "maxminddb" {
     "id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID",
     "id=MAXMINDDB_LICENSE_KEY,env=MAXMINDDB_LICENSE_KEY",
   ]
-  tags = [
-    tag("maxminddb", db),
+  tags = concat(
+    tags("maxminddb", db),
     tag_by_date_with_prefix("maxminddb", db),
-  ]
+  )
 }

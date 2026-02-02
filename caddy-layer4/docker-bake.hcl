@@ -18,8 +18,8 @@ target "caddy-layer4" {
     CADDY_VERSION = version
     CADDY_TARGET = "layer4"
   }
-  tags = [
-    tag("caddy-l4", version),
-    tag_by_date("caddy-l4")
-  ]
+  tags = concat(
+    tags("caddy-l4", version),
+    tag_by_date("caddy-l4"),
+  )
 }

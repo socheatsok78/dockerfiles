@@ -4,8 +4,8 @@ target "xiaomi-cloud-token-extractor" {
   matrix = {
     "VERSION" = [ "latest" ]
   }
-  tags = [
-    tag("xiaomi-cloud-token-extractor", VERSION),
-    tag_by_date("xiaomi-cloud-token-extractor")
-  ]
+  tags = concat(
+    tags("xiaomi-cloud-token-extractor", VERSION),
+    tag_by_date("xiaomi-cloud-token-extractor"),
+  )
 }

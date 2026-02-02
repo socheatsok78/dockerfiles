@@ -1,7 +1,7 @@
 target "figlet" {
   inherits = [ "dockerfiles" ]
   context = "figlet"
-  tags = [
-    tag("figlet", "latest"),
-  ]
+  tags = concat(
+    tags("figlet", "latest"),
+  )
 }

@@ -17,8 +17,8 @@ target "caddy-json-schema" {
     CADDY_VERSION = version
     CADDY_TARGET = "json-schema"
   }
-  tags = [
-    tag("caddy-json-schema", version),
-    tag_by_date("caddy-json-schema")
-  ]
+  tags = concat(
+    tags("caddy-json-schema", version),
+    tag_by_date("caddy-json-schema"),
+  )
 }

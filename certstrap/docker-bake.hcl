@@ -5,7 +5,7 @@ variable "CERTSTRAP_VERSION" {
 target "certstrap" {
   inherits = [ "dockerfiles" ]
   context = "https://github.com/square/certstrap.git#v${CERTSTRAP_VERSION}"
-  tags = [
-    tag("certstrap", "${CERTSTRAP_VERSION}"),
-  ]
+  tags = concat(
+    tags("certstrap", "${CERTSTRAP_VERSION}"),
+  )
 }

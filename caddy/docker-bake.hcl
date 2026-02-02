@@ -18,8 +18,8 @@ target "caddy" {
     CADDY_VERSION = version
     CADDY_TARGET = "caddy"
   }
-  tags = [
-    tag("caddy", version),
-    tag_by_date("caddy")
-  ]
+  tags = concat(
+    tags("caddy", version),
+    tag_by_date("caddy"),
+  )
 }

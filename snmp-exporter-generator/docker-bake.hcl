@@ -8,7 +8,7 @@ target "snmp-exporter-generator" {
   args = {
     "SNMP_EXPORTER_VERSION" = SNMP_EXPORTER_VERSION
   }
-  tags = [
-    tag("snmp-exporter-generator", SNMP_EXPORTER_VERSION),
-  ]
+  tags = concat(
+    tags("snmp-exporter-generator", SNMP_EXPORTER_VERSION),
+  )
 }

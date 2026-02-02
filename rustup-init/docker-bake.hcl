@@ -34,7 +34,7 @@ target "rustup-init" {
   }
   dockerfile = "${VARIANT.name}.Dockerfile"
   platforms = VARIANT.platforms
-  tags = [
-    tag("rustup-init", "${VERSION}${VARIANT.suffix}")
-  ]
+  tags = concat(
+    tags("rustup-init", "${VERSION}${VARIANT.suffix}"),
+  )
 }

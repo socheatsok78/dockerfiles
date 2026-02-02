@@ -9,19 +9,32 @@ variable "GITHUB_REPOSITORY_OWNER" {
   default = "socheatsok78-lab"
 }
 
-function "tag" {
+function "ghcr" {
   params = [name, version]
-  result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}"
+  result = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}"
+  ]
+}
+
+function "tags" {
+  params = [name, version]
+  result = concat(
+    ghcr(name, version),
+  )
 }
 
 function "tag_by_date" {
   params = [name]
-  result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}"
+  result = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${RELEASE_BY_DATE_TAG}"
+  ]
 }
 
 function "tag_by_date_with_prefix" {
   params = [name, prefix]
-  result = "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${prefix}.${RELEASE_BY_DATE_TAG}"
+  result = [
+    "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${prefix}.${RELEASE_BY_DATE_TAG}"
+  ]
 }
 
 target "docker-metadata-action" {}

@@ -13,8 +13,8 @@ target "db-ip" {
   args = {
     DATE = formatdate("YYYY-MM", timestamp())
   }
-  tags = [
-    tag("db-ip", db),
+  tags = concat(
+    tags("db-ip", db),
     tag_by_date_with_prefix("db-ip", db),
-  ]
+  )
 }

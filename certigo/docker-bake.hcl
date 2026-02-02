@@ -8,7 +8,7 @@ target "certigo" {
   args = {
     CERTIGO_VERSION = "${CERTIGO_VERSION}"
   }
-  tags = [
-    tag("certigo", "${CERTIGO_VERSION}"),
-  ]
+  tags = concat(
+    tags("certigo", "${CERTIGO_VERSION}"),
+  )
 }
