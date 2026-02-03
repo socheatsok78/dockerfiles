@@ -1,13 +1,20 @@
 ARG GO_VERSION=1.24
 ARG PANGOLIN_VERSION=1.15.1
+ARG GERBIL_VERSION=1.3.0
+ARG BADGER_VERSION=1.3.1
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 ARG PANGOLIN_VERSION
+ARG GERBIL_VERSION
+ARG BADGER_VERSION
 ADD https://github.com/fosrl/pangolin.git#${PANGOLIN_VERSION}:install /fosrl-installer
 WORKDIR /fosrl-installer
 RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
     --mount=type=cache,sharing=locked,id=fosrl-installer/root/.cache/go-build,target=/root/.cache/go-build \
-  go build -o /usr/bin/fosrl-installer .
+    sed -i "s/config.PangolinVersion = \".*\"/config.PangolinVersion = \"${PANGOLIN_VERSION}\"/" main.go && \
+    sed -i "s/config.GerbilVersion = \".*\"/config.GerbilVersion = \"${GERBIL_VERSION}\"/" main.go && \
+    sed -i "s/config.BadgerVersion = \".*\"/config.BadgerVersion = \"${BADGER_VERSION}\"/" main.go && \
+    go build -o /usr/bin/fosrl-installer .
 
 
 FROM alpine:3
