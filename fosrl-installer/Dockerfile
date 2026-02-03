@@ -11,5 +11,6 @@ RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/p
 
 
 FROM alpine:3
+RUN apk add --no-cache curl
 COPY --from=build --link /usr/bin/fosrl-installer /usr/bin/fosrl-installer
 ENTRYPOINT ["/usr/bin/fosrl-installer"]
