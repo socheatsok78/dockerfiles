@@ -3,8 +3,6 @@ ARG PANGOLIN_VERSION=1.15.1
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 RUN apk add --no-cache curl jq
-
-ARG RNG=1
 ARG PANGOLIN_VERSION
 ADD https://github.com/fosrl/pangolin.git#${PANGOLIN_VERSION}:install /fosrl-installer
 WORKDIR /fosrl-installer
