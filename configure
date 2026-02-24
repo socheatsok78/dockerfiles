@@ -1,1 +1,21 @@
 #!/usr/bin/env bash
+
+BUILDER_NAME="${1:-default-builder}"
+
+# Check if builder already exists
+if docker buildx inspect "${BUILDER_NAME}" >/dev/null 2>&1; then
+	echo "The builder '${BUILDER_NAME}' already exists, either use it or remove it and re-run this script."
+	exit 0
+fi
+
+echo "Installing emulators..."
+(set -x; docker run --privileged --rm tonistiigi/binfmt --install all)
+echo
+
+echo "Creating a new builder instance..."
+(set -x; docker buildx create --name "${BUILDER_NAME}" --driver docker-container --driver-opt "network=host" --driver-opt "env.OTEL_EXPORTER_OTLP_ENDPOINT=http://0.0.0.0:4317" --buildkitd-flags "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host")
+echo
+
+echo "Booting builder..."
+(set -x; docker buildx inspect --bootstrap --builder "${BUILDER_NAME}")
+echo
