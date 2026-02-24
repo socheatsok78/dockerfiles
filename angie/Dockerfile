@@ -21,7 +21,6 @@ FROM docker.angie.software/angie:minimal
 
 COPY --from=nginx-docker-entrypoint / /
 RUN ln -s /etc/angie /etc/nginx
-RUN mv /etc/angie/http.d /etc/angie/conf.d
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "angie", "-g", "daemon off;" ]
