@@ -73,6 +73,7 @@ group "default" {
     "snmp-exporter-generator",
     "socat",
     "ssh",
+    "unzip",
     "xiaomi-cloud-token-extractor",
     "yt-dlp",
   ]
@@ -132,6 +133,7 @@ target "targets" {
       "snmp-exporter-generator",
       "socat",
       "ssh",
+      "unzip",
       "xiaomi-cloud-token-extractor",
       "yt-dlp",
     ]
