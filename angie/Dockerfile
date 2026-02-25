@@ -21,15 +21,16 @@ FROM docker.angie.software/angie:latest AS angie-console-light
 
 FROM docker.angie.software/angie:minimal
 
+
+ADD rootfs /
+RUN apk add --no-cache envsubst
+
+COPY --from=angie-console-light /usr/share/angie-console-light /usr/share/angie-console-light
 COPY --from=nginx-docker-entrypoint / /
 RUN ln -s /etc/angie /etc/nginx \
     && ln -s /var/log/angie /var/log/nginx \
-    && mkdir -p /etc/angie/conf.d \
-    && mv /etc/angie/http.d/default.conf /etc/angie/conf.d/default.conf
-COPY <<EOF /etc/angie/http.d/00-nginx-shim.conf
-include /etc/angie/conf.d/*.conf;
-EOF
-COPY --from=angie-console-light /usr/share/angie-console-light /usr/share/angie-console-light
+    && mv /etc/angie/http.d/ /etc/angie/conf.d/ \
+    && rm -rf /etc/angie/stream.d
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "angie", "-g", "daemon off;" ]
