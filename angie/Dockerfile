@@ -21,6 +21,7 @@ FROM docker.angie.software/angie:minimal
 
 COPY --from=nginx-docker-entrypoint / /
 RUN ln -s /etc/angie /etc/nginx \
+    && ln -s /var/log/angie /var/log/nginx \
     && mkdir -p /etc/angie/conf.d \
     && mv /etc/angie/http.d/default.conf /etc/angie/conf.d/default.conf
 COPY <<EOF /etc/angie/http.d/00-nginx-shim.conf
