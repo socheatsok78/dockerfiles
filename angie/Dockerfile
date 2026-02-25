@@ -21,7 +21,6 @@ FROM docker.angie.software/angie:latest AS angie-console-light
 
 FROM docker.angie.software/angie:minimal
 
-
 ADD rootfs /
 RUN apk add --no-cache envsubst
 
