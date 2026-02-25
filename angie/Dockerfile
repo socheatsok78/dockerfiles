@@ -17,6 +17,8 @@ FROM --platform=$BUILDPLATFORM scratch AS nginx-docker-entrypoint
 COPY --from=nginx /docker-entrypoint.sh /docker-entrypoint.sh
 COPY --from=nginx /docker-entrypoint.d /docker-entrypoint.d
 
+FROM docker.angie.software/angie:latest AS angie-console-light
+
 FROM docker.angie.software/angie:minimal
 
 COPY --from=nginx-docker-entrypoint / /
@@ -27,6 +29,7 @@ RUN ln -s /etc/angie /etc/nginx \
 COPY <<EOF /etc/angie/http.d/00-nginx-shim.conf
 include /etc/angie/conf.d/*.conf;
 EOF
+COPY --from=angie-console-light /usr/share/angie-console-light /usr/share/angie-console-light
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "angie", "-g", "daemon off;" ]
