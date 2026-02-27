@@ -54,7 +54,6 @@ target "dockerfiles" {
 
 group "default" {
   targets = [
-    "angie",
     "caddy-layer4",
     "caddy",
     "certigo",
@@ -110,7 +109,6 @@ group "archived" {
 target "targets" {
   matrix = {
     targets = [
-      "angie",
       "caddy-json-schema",
       "caddy-layer4",
       "caddy",
