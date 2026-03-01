@@ -11,10 +11,8 @@ RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/p
 <<EOF
     GERBIL_VERSION=$(curl -s https://api.github.com/repos/fosrl/gerbil/tags | jq -r '.[0].name')
     BADGER_VERSION=$(curl -s https://api.github.com/repos/fosrl/badger/tags | jq -r '.[0].name')
-    sed -i "s/config.PangolinVersion = \".*\"/config.PangolinVersion = \"${PANGOLIN_VERSION}\"/" main.go
-    sed -i "s/config.GerbilVersion = \".*\"/config.GerbilVersion = \"${GERBIL_VERSION}\"/" main.go
-    sed -i "s/config.BadgerVersion = \".*\"/config.BadgerVersion = \"${BADGER_VERSION}\"/" main.go
-    go build -o /usr/bin/fosrl-installer .
+    GOLDFLAGS="-X main.pangolinVersion=${PANGOLIN_VERSION} -X main.gerbilVersion=${GERBIL_VERSION} -X main.badgerVersion=${BADGER_VERSION}"
+    go build -ldflags "${GOLDFLAGS}" -o /usr/bin/fosrl-installer .
 EOF
 
 FROM alpine:3
