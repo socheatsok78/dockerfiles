@@ -29,7 +29,7 @@ Install Rust toolchain with `alpine` image as base:
 ```Dockerfile
 FROM ghcr.io/socheatsok78/rustup-init:1.28.2-musl AS rustup-init
 
-FROM alpine:latest
+FROM alpine:3
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
