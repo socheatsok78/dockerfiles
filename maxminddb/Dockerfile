@@ -1,6 +1,6 @@
 ARG GITHUB_RUN_ID=0
 
-FROM --platform=$BUILDPLATFORM alpine:latest AS libmaxminddb
+FROM --platform=$BUILDPLATFORM alpine:3 AS libmaxminddb
 RUN apk add --no-cache libmaxminddb
 ENV MAXMINDDB_FILES="GeoLite2-ASN.mmdb GeoLite2-City.mmdb GeoLite2-Country.mmdb"
 RUN --mount=type=secret,id=MAXMINDDB_USER_ID,env=MAXMINDDB_USER_ID \

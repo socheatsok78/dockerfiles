@@ -1,6 +1,6 @@
 ARG GITHUB_SHA=
 
-FROM --platform=$BUILDPLATFORM alpine:latest AS builder
+FROM --platform=$BUILDPLATFORM alpine:3 AS builder
 ARG GITHUB_SHA
 RUN apk add --no-cache openssl && openssl dhparam -out /dhparam.pem 4096
 
