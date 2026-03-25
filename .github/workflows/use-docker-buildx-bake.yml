@@ -72,4 +72,4 @@ jobs:
             cwd://${{ steps.github-meta.outputs.bake-file }}
           set: |
             ${{ inputs.permit-cache && '*.cache-from=type=gha' || ''}}
-            ${{ inputs.permit-cache && '*.cache-to=type=gha,mode=max' || ''}}
+            ${{ inputs.permit-cache && '*.cache-to=type=gha,mode=min' || ''}}
