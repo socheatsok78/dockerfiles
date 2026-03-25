@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
       - name: List targets
         id: generate
-        uses: docker/bake-action/subaction/matrix@v7
+        uses: docker/bake-action/subaction/matrix@master
         with:
           target: ${{ inputs.target }}
 
