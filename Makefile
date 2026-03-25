@@ -4,16 +4,16 @@ docker_buildx_bake_files := $(if $(wildcard ${target}/docker-bake.hcl),--file=${
 docker_buildx_build_cmd := docker buildx bake --file docker-bake.hcl ${docker_buildx_bake_files} ${target}
 
 it:
-	@$(MAKE) print | jq -r '.target | keys'
+	$(MAKE) print | jq -r '.target | keys'
 print:
-	@$(docker_buildx_build_cmd) --print 2>/dev/null
+	$(docker_buildx_build_cmd) --print 2>/dev/null
 build: print
-	@$(docker_buildx_build_cmd) --load --set="*.platform="
+	$(docker_buildx_build_cmd) --load --set="*.platform="
 buildx: print
-	@$(docker_buildx_build_cmd)
+	$(docker_buildx_build_cmd)
 push: print
-	@BUILDX_BUILDER=default-builder $(docker_buildx_build_cmd) --push
+	BUILDX_BUILDER=default-builder $(docker_buildx_build_cmd) --push
 
 .PHONY: $(targets)
 $(targets):
-	@$(MAKE) target=$@ build
+	$(MAKE) target=$@ build
