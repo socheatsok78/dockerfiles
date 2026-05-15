@@ -1,5 +1,5 @@
 ARG GO_VERSION=1.25
-ARG PANGOLIN_VERSION=1.17.0
+ARG PANGOLIN_VERSION=1.18.4
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 RUN apk add --no-cache curl jq
