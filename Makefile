@@ -4,7 +4,7 @@ docker_buildx_bake_files := $(if $(wildcard ${target}/docker-bake.hcl),--file=${
 docker_buildx_build_cmd := docker buildx bake --file docker-bake.hcl ${docker_buildx_bake_files} ${target}
 
 it:
-	$(MAKE) print | jq -r '.target | keys'
+	$(docker_buildx_build_cmd) --print 2>/dev/null | jq -r '.target | keys'
 print:
 	$(docker_buildx_build_cmd) --print 2>/dev/null
 build: print
