@@ -8,6 +8,7 @@ ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "index.js"]
 
 # Fix wrong CSS output from the builder image
+ADD https://smee.io/public/index.html /usr/src/smee.io/public/index.html
 ADD https://smee.io/public/main.min.css /usr/src/smee.io/public/main.min.css
 RUN cd /usr/src/smee.io/public \
     && rm main.min.css.gz \
