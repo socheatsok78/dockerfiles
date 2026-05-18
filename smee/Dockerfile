@@ -18,3 +18,7 @@ RUN cd /usr/src/smee.io/public \
 
 # Drop back to the non-root user to run the application
 USER 1000
+
+# Set the NODE_ENV environment variable to production for better performance
+ENV NODE_ENV=production
+ENV PORT=8080
