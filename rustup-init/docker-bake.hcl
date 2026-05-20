@@ -3,7 +3,7 @@ target "rustup-init" {
   context = "rustup-init"
   matrix = {
     "VERSION" = [
-      "1.28.2",
+      "1.29.0",
     ]
     "VARIANT" = [
       {
