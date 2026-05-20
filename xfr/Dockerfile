@@ -24,3 +24,4 @@ FROM alpine:3
 RUN apk add --no-cache tini
 COPY --from=builder /src/xfr/target/release/xfr /usr/local/bin/xfr
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/xfr"]
+CMD [ "serve" ]
