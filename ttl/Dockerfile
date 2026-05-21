@@ -25,3 +25,4 @@ FROM alpine:3
 RUN apk add --no-cache libcap tini
 COPY --from=builder /src/ttl/target/release/ttl /usr/local/bin/ttl
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/ttl"]
+CMD [ "dns.google" ]
