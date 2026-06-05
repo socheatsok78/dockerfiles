@@ -25,6 +25,11 @@ for file in $(git diff "origin/${GITHUB_BASE_REF}" "HEAD" --name-only); do
 	if [[ "${file}" == *"/.empty" ]] || [[ "${file}" == *"/Dockerfile" ]] || [[ "${file}" == *"/docker-bake.hcl" ]]; then
 		# Extract target and version from the file path
 		target=$(echo "${file}" | cut -d'/' -f1)
+		# Check if the file exists in the repository (it might have been deleted)
+		if [ ! -f "${file}" ]; then
+			echo "The file ${file} for target ${target} does not exist (it might have been deleted), skipping."
+			continue
+		fi
 		# Add to build matrix
 		echo "{\"target\":\"${target}\"}" >> "$BUILD_MATRIX_MANIFEST"
 	fi

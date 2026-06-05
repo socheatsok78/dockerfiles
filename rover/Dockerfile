@@ -33,16 +33,14 @@ COPY --link --from=stage0 /rover /rover
 COPY --link --from=stage1 /rover/ui/dist/ /rover/ui/dist/
 WORKDIR /rover
 
-RUN --mount=type=cache,sharing=locked,target=/go/pkg/mod \
-  --mount=type=tmpfs,target=/root/.cache/go-build \
+RUN --mount=type=cache,sharing=locked,id=rover-go,target=/go/pkg/mod \
+    --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   GOLDFLAGS="-w -s"
   for GOARCH in amd64 arm64; do
       mkdir -p ./bin/linux_${GOARCH}
       (set -x; CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} go build -o ./bin/linux_${GOARCH} -ldflags "${GOLDFLAGS}" .)
   done
-  rm -rf /go/pkg/mod/*
-  rm -rf /root/.cache/go-build/*
 EOT
 
 FROM alpine:${ALPINE_VERSION}
