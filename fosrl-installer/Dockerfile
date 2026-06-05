@@ -7,7 +7,7 @@ ARG PANGOLIN_VERSION
 ADD https://github.com/fosrl/pangolin.git#${PANGOLIN_VERSION}:install /fosrl-installer
 WORKDIR /fosrl-installer
 RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
-    --mount=type=cache,sharing=locked,id=fosrl-installer/root/.cache/go-build,target=/root/.cache/go-build \
+    --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOF
     GERBIL_VERSION=$(curl -s https://api.github.com/repos/fosrl/gerbil/tags | jq -r '.[0].name')
     BADGER_VERSION=$(curl -s https://api.github.com/repos/fosrl/badger/tags | jq -r '.[0].name')

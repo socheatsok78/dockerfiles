@@ -4,7 +4,7 @@ FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 ADD https://github.com/socheatsok78/go-netaddrs.git#main /go-netaddrs
 WORKDIR /go-netaddrs/cmd/netaddrs
 RUN --mount=type=cache,sharing=locked,id=go-discover/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
-    --mount=type=cache,sharing=locked,id=go-netaddrs/root/.cache/go-build,target=/root/.cache/go-build \
+    --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail
   for GOOS in linux; do
