@@ -3,7 +3,7 @@ ARG GO_VERSION=1.19
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 ADD https://github.com/socheatsok78/go-netaddrs.git#main /go-netaddrs
 WORKDIR /go-netaddrs/cmd/netaddrs
-RUN --mount=type=cache,sharing=locked,id=go-discover/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
+RUN --mount=type=cache,sharing=locked,id=go-discover/go/pkg/mod,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail

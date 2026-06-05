@@ -5,7 +5,7 @@ FROM --platform=$BUILDPLATFORM caddy:${CADDY_BUILDER_VERSION}-builder-alpine AS 
 WORKDIR /tmp/source
 ARG CADDY_VERSION
 RUN --mount=type=bind,target=/tmp/source \
-    --mount=type=cache,sharing=locked,id=caddy-json-schema-go,target=/go/pkg/mod,sharing=locked \
+    --mount=type=cache,sharing=locked,id=caddy-json-schema-go,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
   set -xeou pipefail

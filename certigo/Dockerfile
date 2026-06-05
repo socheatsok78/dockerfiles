@@ -5,7 +5,7 @@ FROM golang:${GO_VERSION}-alpine AS build
 ARG CERTIGO_VERSION
 ADD https://github.com/square/certigo.git#v${CERTIGO_VERSION} /certigo
 WORKDIR /certigo
-RUN --mount=type=cache,sharing=locked,id=certigo/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
+RUN --mount=type=cache,sharing=locked,id=certigo/go/pkg/mod,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/root/.cache/go-build \
     apk add --no-cache --virtual .build-deps bash && \
     ./build && \

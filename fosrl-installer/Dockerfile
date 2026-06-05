@@ -6,7 +6,7 @@ RUN apk add --no-cache curl jq
 ARG PANGOLIN_VERSION
 ADD https://github.com/fosrl/pangolin.git#${PANGOLIN_VERSION}:install /fosrl-installer
 WORKDIR /fosrl-installer
-RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/pkg/mod,sharing=locked \
+RUN --mount=type=cache,sharing=locked,id=fosrl-installer/go/pkg/mod,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOF
     GERBIL_VERSION=$(curl -s https://api.github.com/repos/fosrl/gerbil/tags | jq -r '.[0].name')
