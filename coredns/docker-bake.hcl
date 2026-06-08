@@ -14,6 +14,7 @@ target "coredns" {
   context = "coredns"
   args = {
     COREDNS_VERSION = version
+    GITHUB_REPOSITORY_OWNER = GITHUB_REPOSITORY_OWNER
   }
   tags = concat(
     tags("coredns", version),

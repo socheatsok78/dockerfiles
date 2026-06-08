@@ -8,6 +8,7 @@ ARG COREDNS_VERSION
 RUN git clone --depth 1 --branch "v${COREDNS_VERSION}" https://github.com/coredns/coredns.git /coredns
 WORKDIR /coredns
 
+ARG GITHUB_REPOSITORY_OWNER=
 ARG COREDNS_PLUGINS=
 RUN --mount=type=bind,target=/tmp/source \
     --mount=type=cache,sharing=locked,id=coredns-go,target=/go/pkg/mod \
@@ -19,6 +20,7 @@ export COREDNS_PLUGINS="$(tr '\n' ',' < "/tmp/source/plugins.cfg")${COREDNS_PLUG
 make gen
 xargs -a "/tmp/source/replace.txt" -I {} go mod edit --replace {}
 go mod tidy
+export GITCOMMIT="$(git describe --dirty --always)-${GITHUB_REPOSITORY_OWNER}"
 make
 EOT
 
