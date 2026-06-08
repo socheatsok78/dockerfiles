@@ -9,15 +9,15 @@ RUN git clone --depth 1 --branch "v${COREDNS_VERSION}" https://github.com/coredn
 WORKDIR /coredns
 
 ARG COREDNS_PLUGINS=
-ENV COREDNS_PLUGINS=${COREDNS_PLUGINS}
-RUN --mount=type=cache,sharing=locked,id=coredns-go,target=/go/pkg/mod \
+RUN --mount=type=bind,target=/tmp/source \
+    --mount=type=cache,sharing=locked,id=coredns-go,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/root/.cache/go-build \
 <<EOT
 set -ex
 export GOFLAGS="-buildvcs=false"
-export COREDNS_PLUGINS="gslb:github.com/dmachard/coredns-gslb${COREDNS_PLUGINS:+,}$COREDNS_PLUGINS"
+export COREDNS_PLUGINS="$(tr '\n' ',' < "/tmp/source/plugins.cfg")${COREDNS_PLUGINS}"
 make gen
-go mod edit -replace github.com/dmachard/coredns-gslb=github.com/socheatsok78/coredns-gslb-plugin@main
+xargs -a "/tmp/source/replace.txt" -I {} go mod edit --replace {}
 go mod tidy
 make
 EOT
