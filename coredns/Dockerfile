@@ -1,11 +1,11 @@
+ARG COREDNS_VERSION
 ARG GO_VERSION=1.25
-ARG COREDNS_VERSION=v1.14.3
 
 FROM golang:${GO_VERSION}-alpine AS build
 RUN apk add --no-cache git make
 
 ARG COREDNS_VERSION
-RUN git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns.git /coredns
+RUN git clone --depth 1 --branch "v${COREDNS_VERSION}" https://github.com/coredns/coredns.git /coredns
 WORKDIR /coredns
 
 ARG COREDNS_PLUGINS=
