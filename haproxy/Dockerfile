@@ -1,5 +1,4 @@
 # syntax=docker/dockerfile:1
-
 ARG HAPROXY_VERSION=3.3
 ARG HAPROXY_DATAPLANEAPI_VERSION=3.2.7
 
