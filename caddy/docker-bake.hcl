@@ -11,7 +11,7 @@ target "caddy" {
   matrix = {
     version = CADDY_VERSION
   }
-  name = "caddy-${replace(version, ".", "-")}"
+  name = "caddy-${sanitize(version)}"
   context = "caddy"
   args = {
     CADDY_BUILDER_VERSION = regex("^(\\d+\\.\\d+)", version)[0]

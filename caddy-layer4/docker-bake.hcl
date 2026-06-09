@@ -11,7 +11,7 @@ target "caddy-layer4" {
   matrix = {
     version = CADDY_VERSION
   }
-  name = "caddy-l4-${replace(version, ".", "-")}"
+  name = "caddy-l4-${sanitize(version)}"
   description = "Caddy with TCP/UDP support"
   context = "caddy-layer4"
   args = {

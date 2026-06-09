@@ -10,7 +10,7 @@ target "coredns" {
   matrix = {
     version = COREDNS_VERSION
   }
-  name = "coredns-${replace(version, ".", "-")}"
+  name = "coredns-${sanitize(version)}"
   context = "coredns"
   args = {
     COREDNS_VERSION = version

@@ -11,7 +11,7 @@ target "caddy-json-schema" {
   matrix = {
     version = CADDY_VERSION
   }
-  name = "caddy-json-schema-${replace(version, ".", "-")}"
+  name = "caddy-json-schema-${sanitize(version)}"
   context = "caddy-json-schema"
   args = {
     CADDY_VERSION = version
