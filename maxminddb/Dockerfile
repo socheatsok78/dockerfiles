@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG GITHUB_RUN_ID=0
 
 FROM --platform=$BUILDPLATFORM alpine:3 AS libmaxminddb

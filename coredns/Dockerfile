@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG COREDNS_VERSION
 ARG GO_VERSION=1.25
 

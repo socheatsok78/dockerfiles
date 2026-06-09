@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG CADDY_BUILDER_VERSION=2
 ARG CADDY_VERSION=2
 

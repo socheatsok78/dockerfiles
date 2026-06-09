@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM alpine:3
 
 COPY --from=hairyhenderson/gomplate:stable /gomplate /bin/gomplate

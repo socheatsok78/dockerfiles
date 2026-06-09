@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG GO_VERSION=1.19
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build

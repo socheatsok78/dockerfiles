@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM golang:bookworm AS snmp_exporter
 RUN apt-get update \
   && apt-get install -y --no-install-recommends libsnmp-dev unzip

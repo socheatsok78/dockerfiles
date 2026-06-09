@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG GITHUB_SHA=
 
 FROM --platform=$BUILDPLATFORM alpine:3 AS builder

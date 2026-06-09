@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG ROVER_VERSION=main
 ARG TF_VERSION=1.13.4
 ARG GO_VERSION=1.21

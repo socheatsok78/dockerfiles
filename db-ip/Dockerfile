@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG DATE=2025-08
 ARG GITHUB_RUN_ID=0
 

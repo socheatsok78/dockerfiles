@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM smee-builder
 
 # Use tini as the init system to handle signals properly

@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM ghcr.io/socheatsok78/rustup-init:1.29.0-musl AS rustup-init
 
 FROM alpine:3 AS builder

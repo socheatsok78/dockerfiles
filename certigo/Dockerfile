@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG CERTIGO_VERSION
 ARG GO_VERSION=1.25
 

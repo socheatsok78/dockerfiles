@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM alpine:edge
 # Add the testing repository to get the latest version of openfortivpn
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
