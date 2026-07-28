@@ -1,5 +1,5 @@
 variable "NIX_VERSION" {
-  default = "2.32.8"
+  default = "2.35.1"
 }
 target "nix-sandbox" {
   inherits = [ "dockerfiles" ]
