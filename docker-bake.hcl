@@ -54,7 +54,6 @@ target "dockerfiles" {
 
 group "default" {
   targets = [
-    "buildkit-nix",
     "caddy-layer4",
     "caddy",
     "certigo",
@@ -118,7 +117,6 @@ group "archived" {
 target "targets" {
   matrix = {
     targets = [
-      "buildkit-nix",
       "caddy-json-schema",
       "caddy-layer4",
       "caddy",
