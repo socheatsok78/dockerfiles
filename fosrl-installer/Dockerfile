@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 ARG GO_VERSION=1.25
-ARG PANGOLIN_VERSION=1.19.2
+ARG PANGOLIN_VERSION=1.21.1
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 RUN apk add --no-cache curl jq
