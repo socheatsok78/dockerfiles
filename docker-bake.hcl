@@ -55,6 +55,7 @@ target "dockerfiles" {
 group "default" {
   targets = [
     "caddy-layer4",
+    "caddy-file-browser",
     "caddy",
     "certigo",
     "certstrap",
@@ -119,6 +120,7 @@ target "targets" {
     targets = [
       "caddy-json-schema",
       "caddy-layer4",
+      "caddy-file-browser",
       "caddy",
       "certigo",
       "certstrap",
