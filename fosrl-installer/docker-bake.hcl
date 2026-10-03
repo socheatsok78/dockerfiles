@@ -1,5 +1,5 @@
 variable "PANGOLIN_VERSION" {
-  default = "1.23.0"
+  default = "1.24.0"
 }
 target "fosrl-installer" {
   inherits = [ "dockerfiles" ]
