@@ -1,10 +1,11 @@
 variable "PANGOLIN_VERSION" {
-  default = "1.22.0"
+  default = "1.23.0"
 }
 target "fosrl-installer" {
   inherits = [ "dockerfiles" ]
   context = "fosrl-installer"
   args = {
+    GO_VERSION = "1.26"
     PANGOLIN_VERSION = PANGOLIN_VERSION
   }
   tags = concat(
