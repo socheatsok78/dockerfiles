@@ -5,6 +5,7 @@ target "fosrl-installer" {
   inherits = [ "dockerfiles" ]
   context = "fosrl-installer"
   args = {
+    GO_VERSION = "1.26"
     PANGOLIN_VERSION = PANGOLIN_VERSION
   }
   tags = concat(
