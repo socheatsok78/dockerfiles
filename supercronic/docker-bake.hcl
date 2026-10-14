@@ -15,6 +15,7 @@ target "supercronic-basic" {
 
 target "supercronic-docker" {
   inherits = [ "dockerfiles" ]
+  dockerfile = "docker.Dockerfile"
   context = "supercronic"
   tags = concat(
     tags("supercronic", "docker"),
