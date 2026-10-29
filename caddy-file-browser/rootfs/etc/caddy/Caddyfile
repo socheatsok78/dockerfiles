@@ -1,0 +1,18 @@
+{
+	debug
+}
+:80 {
+	header {
+		Cache-Control "no-cache, no-store, must-revalidate"
+		Pragma "no-cache"
+		Expires "0"
+	}
+	@is-mobile header_regexp User-Agent (?i)(android|iphone|ipad|mobile)
+	vars @is-mobile isMobile true
+	vars isMobile false
+	root * /srv
+	file_server {
+		hide .DS_Store .git .git* .*.parts
+		browse /usr/share/caddy/index.html
+	}
+}
